@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Music Player</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .audio-player {
+            width: 100%;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .controls button {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">Music Player</h1>
+        <audio class="audio-player" controls>
+            <source src="your-audio-file.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+        <div class="controls">
+            <button class="btn btn-primary" id="playPauseBtn">Play/Pause</button>
+            <button class="btn btn-secondary" id="stopBtn">Stop</button>
+            <button class="btn btn-info" id="muteBtn">Mute</button>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var audio = document.querySelector('.audio-player');
+            var playPauseBtn = document.getElementById('playPauseBtn');
+            var stopBtn = document.getElementById('stopBtn');
+            var muteBtn = document.getElementById('muteBtn');
+
+            playPauseBtn.addEventListener('click', function () {
+                if (audio.paused) {
+                    audio.play();
+                    playPauseBtn.textContent = 'Pause';
+                } else {
+                    audio.pause();
+                    playPauseBtn.textContent = 'Play';
+                }
+            });
+
+            stopBtn.addEventListener('click', function () {
+                audio.pause();
+                audio.currentTime = 0;
+                playPauseBtn.textContent = 'Play';
+            });
+
+            muteBtn.addEventListener('click', function () {
+                if (audio.muted) {
+                    audio.muted = false;
+                    muteBtn.textContent = 'Mute';
+                } else {
+                    audio.muted = true;
+                    muteBtn.textContent = 'Unmute';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
